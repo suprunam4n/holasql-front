@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-const userQuestion = ref("Here")
+const userQuestion = ref("Which is the most prescribed medication?")
 const request = {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
@@ -17,6 +17,7 @@ const request = {
     credentials: "same-origin", // include, *same-origin, omit
     headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRucnVnb3F5bHN1eXp5enBqY21iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDAwOTE3MDgsImV4cCI6MjAxNTY2NzcwOH0.JXv1KPFTPsFUew--Wk_jZhj20Qu4tZldLlWRUjKhxKc"
         // 'Content-Type': 'application/x-www-form-urlencoded',
     },
     redirect: "follow", // manual, *follow, error
@@ -25,6 +26,6 @@ const request = {
 }
 const askModel = async () => {
     userQuestion.value = userQuestion.value + " " + userQuestion.value
-    const users = await $fetch('/api/nl2sql_endpoint', request).catch((error) => error)
+    const users = await $fetch('https://tnrugoqylsuyzyzpjcmb.supabase.co/functions/v1/browser_call', request).catch((error) => error)
 }
 </script>
